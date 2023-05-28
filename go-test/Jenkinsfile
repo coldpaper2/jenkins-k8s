@@ -35,10 +35,12 @@ spec:
            
             steps {
              withCredentials([string(credentialsId: 'awsaccountnum', variable: 'SECRET')]) { 
+                container(name: 'kaniko') {
                 sh '--dockerfile=go-test/Dockerfile'
                 sh '--context=git://github.com/coldpaper2/jenkins-test.git'
                 sh '"--destination=${awsaccountnum}.dkr.ecr.ap-northeast-2.amazonaws.com/jenkins-test:${BUILD_NUM}"]'
             }
+		}
          }   
         }
     }
