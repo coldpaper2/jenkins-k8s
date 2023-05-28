@@ -14,7 +14,8 @@ spec:
     image: gcr.io/kaniko-project/executor:latest
     command: 
     - sleep
-    args: infinity
+    args: 
+    - infinity
     volumeMounts:
       - name: kaniko-secret
         mountPath: /kaniko/.docker
