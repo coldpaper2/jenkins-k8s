@@ -6,7 +6,7 @@ apiVersion: v1
 kind: Pod
 metadata:
   name: kaniko-test
-  namespace: default
+  namespace: jenkins
 spec:
   containers:
   - name: kaniko
