@@ -1,7 +1,7 @@
 pipeline {
     agent { 
-	withCredentials([string(credentialsId: 'awsaccountnum', variable: 'SECRET')]) {
         kubernetes {
+		withCredentials([string(credentialsId: 'awsaccountnum', variable: 'SECRET')]) {
             yaml '''
 apiVersion: v1
 kind: Pod
@@ -27,6 +27,7 @@ spec:
             path: config.json
 '''
         }
+}
     }
     stages {
         stage('Main') {
@@ -37,4 +38,4 @@ spec:
     }
 }
 
-}
+
