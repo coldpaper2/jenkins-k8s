@@ -12,6 +12,8 @@ spec:
   containers:
   - name: kaniko
     image: gcr.io/kaniko-project/executor:latest
+    ports:
+    - containerPort: 50000
     command: 
     - sleep
     args: 
