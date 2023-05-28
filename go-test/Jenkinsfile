@@ -1,5 +1,6 @@
 pipeline {
-    agent {
+    agent { 
+	withCredentials([string(credentialsId: 'awsaccountnum', variable: 'SECRET')]) {
         kubernetes {
             yaml '''
 apiVersion: v1
@@ -13,7 +14,7 @@ spec:
     image: gcr.io/kaniko-project/executor:latest
     args: ["--dockerfile=Dockerfile",
            "--context=git://github.com/coldpaper2/jenkins-test.git",
-           "--destination=<AWS AccountNumber>.dkr.ecr.ap-northeast-2.amazonaws.com/jenkins-test:v1"]
+           "--destination=${awsaccountnum}.dkr.ecr.ap-northeast-2.amazonaws.com/jenkins-test:${BUILD_NUM}"]
     volumeMounts:
       - name: kaniko-secret
         mountPath: /kaniko/.docker
@@ -34,4 +35,6 @@ spec:
             }
         }
     }
+}
+
 }
