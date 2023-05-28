@@ -1,0 +1,37 @@
+pipeline {
+    agent {
+        kubernetes {
+            yaml '''
+apiVersion: v1
+kind: Pod
+metadata:
+  name: kaniko-test
+  namespace: default
+spec:
+  containers:
+  - name: kaniko
+    image: gcr.io/kaniko-project/executor:latest
+    args: ["--dockerfile=Dockerfile",
+           "--context=git://github.com/coldpaper2/jenkins-test.git",
+           "--destination=<AWS AccountNumber>.dkr.ecr.ap-northeast-2.amazonaws.com/jenkins-test:v1"]
+    volumeMounts:
+      - name: kaniko-secret
+        mountPath: /kaniko/.docker
+  volumes:
+    - name: kaniko-secret
+      secret:
+        secretName: kaniko-test
+        items:
+          - key: .dockerconfigjson
+            path: config.json
+'''
+        }
+    }
+    stages {
+        stage('Main') {
+            steps {
+                sh 'hostname'
+            }
+        }
+    }
+}
