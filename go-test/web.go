@@ -10,7 +10,7 @@ import (
 
 
 func index(w http.ResponseWriter, r *http.Request) {
-	fmt.Fprintf(w, "Jenkins TEST !!! ")
+	fmt.Fprintf(w, "Jenkins & GitHub ACL TEST !!! ")
 
 }
 
