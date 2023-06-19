@@ -39,7 +39,7 @@ spec:
              withCredentials([string(credentialsId: 'awsaccountnum', variable: 'SECRET')]) { 
                 container(name: 'kaniko') {
                 sh '--dockerfile=go-test/Dockerfile'
-                sh '--context=git://github.com/coldpaper2/jenkins-test.git'
+                sh '--context=git://github.com/coldpaper2/jenkins-k8s.git'
                 sh '--destination=mhkim1560/jenkins-test:${BUILD_NUM}'
             }
 		}
