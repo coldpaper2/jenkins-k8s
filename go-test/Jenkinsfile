@@ -37,9 +37,9 @@ spec:
            
             steps {
                 container(name: 'kaniko') {
-                sh '--dockerfile=go-test/Dockerfile'
-                sh '--context=git://github.com/coldpaper2/jenkins-k8s.git'
-                sh '--destination=mhkim1560/jenkins-test:${BUILD_NUM}'
+                   sh 'executor --dockerfile=Dockerfile \
+                    --context=git://github.com/coldpaper2/jenkins-k8s.git \
+                    --destination=mhkim1560/kaniko-test:${BUILD_NUMBER}'
             }
          }   
         }
