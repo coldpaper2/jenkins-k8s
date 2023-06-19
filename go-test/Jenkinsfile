@@ -40,7 +40,7 @@ spec:
                 container(name: 'kaniko') {
                 sh '--dockerfile=go-test/Dockerfile'
                 sh '--context=git://github.com/coldpaper2/jenkins-test.git'
-                sh '"--destination=${awsaccountnum}.dkr.ecr.ap-northeast-2.amazonaws.com/jenkins-test:${BUILD_NUM}"]'
+                sh '--destination=mhkim1560/jenkins-test:${BUILD_NUM}'
             }
 		}
          }   
